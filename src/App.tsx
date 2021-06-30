@@ -1,7 +1,14 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import theme from "./theme";
+import AlpacaGenerator from "./AlpacaGenerator";
 
 function App() {
-  return <div className="App">Hello, alpaca generator!</div>;
+  return (
+    <ThemeProvider theme={theme}>
+      <AlpacaGenerator />
+    </ThemeProvider>
+  );
 }
 
 export default App;
