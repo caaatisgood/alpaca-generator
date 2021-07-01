@@ -9,7 +9,7 @@ import random from "../utils/random";
 const DEFAULT_IMAGE_CONFIG = {
   background: "#002966",
   hair: "default",
-  accessories: "default",
+  accessories: "",
   leg: "default",
   eyes: "default",
   mouth: "default",
@@ -42,26 +42,29 @@ const AlpacaGenerator = () => {
 
   return (
     <StyledWrapper>
-      <StyledContentWrapper>
+      <StyledMain>
         <StyledTitle>Alpaca Generator</StyledTitle>
-        <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
-        <ControlPanel
-          alpacaConfig={alpacaConfig}
-          setActiveSubAttribute={_updateAlpacaConfig}
-          activeAttribute={activeAttribute}
-          setActiveAttribute={setActiveAttribute}
-        />
-      </StyledContentWrapper>
+        <StyledPanel>
+          <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
+          <ControlPanel
+            alpacaConfig={alpacaConfig}
+            setActiveSubAttribute={_updateAlpacaConfig}
+            activeAttribute={activeAttribute}
+            setActiveAttribute={setActiveAttribute}
+          />
+        </StyledPanel>
+      </StyledMain>
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background: ${(props) => props.theme.colors.grey20};
 `;
-const StyledContentWrapper = styled.div`
-  max-width: 880px;
+const StyledMain = styled.main`
+  max-width: 912px;
   padding: 60px 16px;
   margin-left: auto;
   margin-right: auto;
@@ -74,6 +77,9 @@ const StyledTitle = styled.h1`
   font-weight: 800;
   color: ${(props) => props.theme.colors.darkblue70};
   letter-spacing: 0.05em;
+`;
+const StyledPanel = styled.div`
+  display: flex;
 `;
 
 export default React.memo(AlpacaGenerator);
