@@ -44,17 +44,13 @@ const AlpacaGenerator = () => {
     <StyledWrapper>
       <StyledMain>
         <StyledTitle>Alpaca Generator</StyledTitle>
-        <StyledPanel>
-          <StyledPreviewerWrapper>
-            <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
-          </StyledPreviewerWrapper>
-          <ControlPanel
-            alpacaConfig={alpacaConfig}
-            setActiveSubAttribute={_updateAlpacaConfig}
-            activeAttribute={activeAttribute}
-            setActiveAttribute={setActiveAttribute}
-          />
-        </StyledPanel>
+        <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
+        <ControlPanel
+          alpacaConfig={alpacaConfig}
+          setActiveSubAttribute={_updateAlpacaConfig}
+          activeAttribute={activeAttribute}
+          setActiveAttribute={setActiveAttribute}
+        />
       </StyledMain>
     </StyledWrapper>
   );
@@ -66,25 +62,23 @@ const StyledWrapper = styled.div`
   background: ${(props) => props.theme.colors.grey20};
 `;
 const StyledMain = styled.main`
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  grid-row-gap: 32px;
+  grid-column-gap: 80px;
   max-width: 912px;
   padding: 60px 16px;
   margin-left: auto;
   margin-right: auto;
 `;
 const StyledTitle = styled.h1`
+  grid-column: 1/-1;
   text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 32px;
+  margin: 0;
   font-size: 3rem;
   font-weight: 800;
   color: ${(props) => props.theme.colors.darkblue70};
   letter-spacing: 0.05em;
-`;
-const StyledPanel = styled.div`
-  display: flex;
-`;
-const StyledPreviewerWrapper = styled.div`
-  margin-right: 80px;
 `;
 
 export default React.memo(AlpacaGenerator);
