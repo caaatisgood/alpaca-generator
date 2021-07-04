@@ -55,45 +55,67 @@ const NECK_MAP = {
   thick: "thick",
 };
 
+const ATTRIBUTE_KEY_MAP = {
+  background: "background",
+  hair: "hair",
+  accessories: "accessories",
+  leg: "leg",
+  eyes: "eyes",
+  mouth: "mouth",
+  ears: "ears",
+  neck: "neck",
+};
+
 export const ATTRIBUTE_MAP = {
-  background: {
+  [ATTRIBUTE_KEY_MAP.background]: {
     key: "background",
     text: "Background",
     values: Object.values(theme.colors),
   },
-  hair: {
+  [ATTRIBUTE_KEY_MAP.hair]: {
     key: "hair",
     text: "Hair",
     values: Object.values(HAIR_MAP),
   },
-  accessories: {
+  [ATTRIBUTE_KEY_MAP.accessories]: {
     key: "accessories",
     text: "Accessories",
     values: Object.values(ACCESSORIES_MAP),
   },
-  leg: {
+  [ATTRIBUTE_KEY_MAP.leg]: {
     key: "leg",
     text: "Leg",
     values: Object.values(LEG_MAP),
   },
-  eyes: {
+  [ATTRIBUTE_KEY_MAP.eyes]: {
     key: "eyes",
     text: "Eyes",
     values: Object.values(EYES_MAP),
   },
-  mouth: {
+  [ATTRIBUTE_KEY_MAP.mouth]: {
     key: "mouth",
     text: "Mouth",
     values: Object.values(MOUTH_MAP),
   },
-  ears: {
+  [ATTRIBUTE_KEY_MAP.ears]: {
     key: "ears",
     text: "Ears",
     values: Object.values(EARS_MAP),
   },
-  neck: {
+  [ATTRIBUTE_KEY_MAP.neck]: {
     key: "neck",
     text: "Neck",
     values: Object.values(NECK_MAP),
   },
 };
+
+export const ATTRIBUTES = [
+  ATTRIBUTE_KEY_MAP.hair,
+  ATTRIBUTE_KEY_MAP.ears,
+  ATTRIBUTE_KEY_MAP.eyes,
+  ATTRIBUTE_KEY_MAP.mouth,
+  ATTRIBUTE_KEY_MAP.neck,
+  ATTRIBUTE_KEY_MAP.leg,
+  ATTRIBUTE_KEY_MAP.accessories,
+  ATTRIBUTE_KEY_MAP.background,
+];

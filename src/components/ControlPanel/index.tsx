@@ -1,6 +1,8 @@
-import styled, { css } from "styled-components";
-import { ATTRIBUTE_MAP } from "../../constants/imageAttributes";
+import styled from "styled-components";
+import { ATTRIBUTE_MAP, ATTRIBUTES } from "../../constants/imageAttributes";
 import { ImageConfig, TSFixMe } from "../../interfaces";
+import Button from "./Button";
+import ColorButton from "./ColorButton";
 
 interface Props {
   alpacaConfig: ImageConfig;
@@ -23,81 +25,90 @@ const ControlPanel = ({
     });
 
   return (
-    <div>
-      <div className="p-2 flex items-center justify-center">
-        <div className="flex overflow-scroll max-w-max space-x-2 p-1 items-center h-28">
+    <StyledWrapper>
+      <StyledFrame>
+        <StyledTitle>PART</StyledTitle>
+        <div>
+          {ATTRIBUTES.map((key) => {
+            const { text } = ATTRIBUTE_MAP[key];
+            return (
+              <StyledButton
+                key={key}
+                title={text}
+                active={activeAttribute === key}
+                onClick={() => setActiveAttribute(key)}
+              >
+                {text}
+              </StyledButton>
+            );
+          })}
+        </div>
+      </StyledFrame>
+      <StyledFrame>
+        <StyledTitle>STYLE</StyledTitle>
+        <div>
           {ATTRIBUTE_MAP[activeAttribute].values.map((value) => {
             if (activeAttribute === "background") {
               return (
-                <StyledBgButton
+                <ColorButton
                   key={value}
-                  $active={activeSubAttribute === value}
-                  $bg={value}
+                  // $active={activeSubAttribute === value}
+                  // $bg={value}
                   onClick={() => _setActiveSubAttribute(value)}
                 />
               );
             }
             return (
-              <StyledAttributeButton
+              <StyledButton
                 key={value}
-                $active={activeSubAttribute === value}
+                active={activeSubAttribute === value}
                 onClick={() => _setActiveSubAttribute(value)}
               >
                 {value}
-              </StyledAttributeButton>
+              </StyledButton>
             );
           })}
         </div>
-      </div>
-      <div className="p-2 flex items-center justify-center">
-        <div className="flex overflow-scroll max-w-max space-x-2 p-1">
-          {Object.values(ATTRIBUTE_MAP).map(({ key, text }) => (
-            <StyledAttributeButton
-              key={key}
-              title={text}
-              $active={activeAttribute === key}
-              onClick={() => setActiveAttribute(key)}
-            >
-              {text}
-            </StyledAttributeButton>
-          ))}
-        </div>
-      </div>
-    </div>
+      </StyledFrame>
+    </StyledWrapper>
   );
 };
 
-const StyledAttributeButton = styled.button<{ $active: boolean }>`
-  background: ${({ theme }) => theme.colors.red20};
-  border-radius: 12px;
-  height: 96px;
-  width: 96px;
-  flex-shrink: 0;
-  :focus {
-    outline: 0;
-  }
-  ${({ $active }) =>
-    $active &&
-    css`
-      border: 2px solid ${({ theme }) => theme.colors.red40};
-    `}
+const StyledWrapper = styled.div`
+  max-width: 330px;
 `;
-const StyledBgButton = styled.button<{ $bg: string; $active: boolean }>`
-  background: ${({ $bg }) => $bg};
-  flex-shrink: 0;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  :focus {
-    outline: 0;
+const StyledFrame = styled.div`
+  & + & {
+    margin-top: 32px;
   }
-  transition: width 0.3s, height 0.3s;
-  ${({ $active }) =>
-    $active &&
-    css`
-      height: 40px;
-      width: 40px;
-    `}
 `;
+const StyledTitle = styled.h2`
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 900;
+  margin: 0 0 12px 0;
+  color: ${(props) => props.theme.colors.darkblue70};
+`;
+const StyledButton = styled(Button)`
+  margin-right: 8px;
+  margin-bottom: 8px;
+`;
+// const StyledBgButton = styled.button<{ $bg: string; $active: boolean }>`
+//   background: ${({ $bg }) => $bg};
+//   flex-shrink: 0;
+//   height: 30px;
+//   width: 30px;
+//   border-radius: 50%;
+//   :focus {
+//     outline: 0;
+//   }
+//   transition: width 0.3s, height 0.3s;
+//   ${({ $active }) =>
+//     $active &&
+//     css`
+//       height: 40px;
+//       width: 40px;
+//     `}
+// `;
 
 export default ControlPanel;

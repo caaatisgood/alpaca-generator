@@ -45,7 +45,9 @@ const AlpacaGenerator = () => {
       <StyledMain>
         <StyledTitle>Alpaca Generator</StyledTitle>
         <StyledPanel>
-          <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
+          <StyledPreviewerWrapper>
+            <Previewer alpacaConfig={alpacaConfig} shuffle={_shuffle} />
+          </StyledPreviewerWrapper>
           <ControlPanel
             alpacaConfig={alpacaConfig}
             setActiveSubAttribute={_updateAlpacaConfig}
@@ -80,6 +82,9 @@ const StyledTitle = styled.h1`
 `;
 const StyledPanel = styled.div`
   display: flex;
+`;
+const StyledPreviewerWrapper = styled.div`
+  margin-right: 80px;
 `;
 
 export default React.memo(AlpacaGenerator);
