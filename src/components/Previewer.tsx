@@ -60,7 +60,10 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
   return (
     <div>
       <StyledInner $bg={alpacaConfig.background}>{_renderParts()}</StyledInner>
-      <StyledShuffle onClick={shuffle}>🔀</StyledShuffle>
+      <StyledButton onClick={shuffle}>
+        <StyledButtonIcon>🔀</StyledButtonIcon>
+        Random
+      </StyledButton>
     </div>
   );
 };
@@ -68,6 +71,7 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
 const StyledInner = styled.div<{ $bg: string }>`
   height: 360px;
   width: 360px;
+  margin-bottom: 32px;
   transition: background-color 0.3s;
   background-color: ${({ $bg }) => $bg};
   position: relative;
@@ -87,17 +91,28 @@ const Nose = styled(StyledImg)``;
 const Mouth = styled(StyledImg)``;
 const Eyes = styled(StyledImg)``;
 const Leg = styled(StyledImg)``;
-const StyledShuffle = styled.button`
-  margin-left: 8px;
+const StyledButton = styled.button`
+  min-width: 170px;
   font-size: 16px;
+  line-height: 1.5;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  color: ${(props) => props.theme.colors.grey80};
+  background: #fff;
+  padding: 12px 8px;
   outline: none;
-  filter: grayscale(0.5);
+  :hover,
   :focus {
-    outline: none;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
   }
-  :hover {
-    filter: grayscale(0.1);
+  :active {
+    box-shadow: none;
+    background: ${(props) => props.theme.colors.grey10};
   }
+`;
+const StyledButtonIcon = styled.span`
+  margin-right: 8px;
 `;
 
 export default Previewer;

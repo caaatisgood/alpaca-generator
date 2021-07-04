@@ -17,6 +17,7 @@ const theme = {
     darkblue50: "#002966",
     darkblue70: "#00193d",
     white: "#fff",
+    grey10: "#f9f9f9",
     grey20: "#f1f1f1",
     grey40: "#ccc",
     grey70: "#666",

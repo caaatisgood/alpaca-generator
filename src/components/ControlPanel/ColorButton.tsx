@@ -25,7 +25,9 @@ const StyledButton = styled.button<{ $active: boolean }>`
   border-style: solid;
   border-color: transparent;
   background: transparent;
-  :hover {
+  outline: none;
+  :hover,
+  :focus {
     border-color: ${(props) => props.theme.colors.blue50};
   }
   ${(props) =>
