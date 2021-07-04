@@ -70,6 +70,14 @@ const StyledMain = styled.main`
   padding: 60px 16px;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 860px) {
+    grid-column-gap: 36px;
+  }
+  @media (max-width: 768px) {
+    padding-top: 24px;
+    grid-row-gap: 16px;
+    grid-template-columns: 1fr;
+  }
 `;
 const StyledTitle = styled.h1`
   grid-column: 1/-1;
@@ -79,6 +87,9 @@ const StyledTitle = styled.h1`
   font-weight: 800;
   color: ${(props) => props.theme.colors.darkblue70};
   letter-spacing: 0.05em;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 export default React.memo(AlpacaGenerator);

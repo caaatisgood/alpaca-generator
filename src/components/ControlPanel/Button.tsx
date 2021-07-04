@@ -36,4 +36,19 @@ const StyledButton = styled.button<{ $active: boolean }>`
         border: 1px solid ${(props) => props.theme.colors.blue70};
       }
     `}
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+    padding: 8px 20px;
+    :hover,
+    :focus {
+      padding: 7px 19px;
+    }
+    ${({ $active }) =>
+      $active &&
+      css`
+        && {
+          padding: 8px 20px;
+        }
+      `}
+  }
 `;

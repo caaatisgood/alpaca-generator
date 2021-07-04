@@ -93,10 +93,18 @@ const ControlPanel = ({
 
 const StyledWrapper = styled.div`
   max-width: 360px;
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 const StyledFrame = styled.div`
   & + & {
-    margin-top: 32px;
+    margin-top: 24px;
+  }
+  @media (max-width: 768px) {
+    & + & {
+      margin-top: 10px;
+    }
   }
 `;
 const StyledTitle = styled.h2`
@@ -106,12 +114,19 @@ const StyledTitle = styled.h2`
   text-transform: uppercase;
   margin: 0 0 12px 0;
   color: ${(props) => props.theme.colors.darkblue70};
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
 `;
 const StyledButton = styled(Button)`
   margin-right: 8px;
   margin-bottom: 8px;
   :first-letter {
     text-transform: uppercase;
+  }
+  @media (max-width: 768px) {
+    margin-right: 4px;
+    margin-bottom: 4px;
   }
 `;
 const StyledColorButtonsWrapper = styled.div`
@@ -123,6 +138,10 @@ const StyledColorButtonsWrapper = styled.div`
 const StyledColorButton = styled(ColorButton)`
   margin-right: 8px;
   margin-bottom: 8px;
+  @media (max-width: 768px) {
+    margin-right: 2px;
+    margin-bottom: 2px;
+  }
 `;
 
 export default ControlPanel;
