@@ -16,6 +16,8 @@ const StyledButton = styled.button<{ $active: boolean }>`
   border-radius: 30px;
   color: ${(props) => props.theme.colors.blue40};
   outline: none;
+  font-size: 1rem;
+  line-height: 1.2;
   :hover,
   :focus {
     padding: 11px 31px;

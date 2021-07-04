@@ -75,7 +75,7 @@ const StyledTitle = styled.h1`
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 32px;
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: 800;
   color: ${(props) => props.theme.colors.darkblue70};
   letter-spacing: 0.05em;

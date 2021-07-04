@@ -59,7 +59,10 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
 
   return (
     <div>
-      <StyledInner $bg={alpacaConfig.background}>{_renderParts()}</StyledInner>
+      <StyledInner $bg={alpacaConfig.background}>
+        {_renderParts()}
+        <StyledLogo src="/images/devprojects-logo-vertical.png" />
+      </StyledInner>
       <StyledButton onClick={shuffle}>
         <StyledButtonIcon>🔀</StyledButtonIcon>
         Random
@@ -91,9 +94,16 @@ const Nose = styled(StyledImg)``;
 const Mouth = styled(StyledImg)``;
 const Eyes = styled(StyledImg)``;
 const Leg = styled(StyledImg)``;
+const StyledLogo = styled.img`
+  position: absolute;
+  left: 6px;
+  bottom: 9px;
+  width: 16px;
+  height: auto;
+`;
 const StyledButton = styled.button`
   min-width: 170px;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   font-weight: bold;
   border: none;
