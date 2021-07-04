@@ -13,7 +13,7 @@ const theme = {
     green50: "#9fd966",
     green60: "#74bd29",
     green70: "#6a9440",
-    darkblue30: "7a8faf",
+    darkblue30: "#7a8faf",
     darkblue50: "#002966",
     darkblue70: "#00193d",
     white: "#fff",

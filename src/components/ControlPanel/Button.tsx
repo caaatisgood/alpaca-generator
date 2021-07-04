@@ -15,7 +15,6 @@ const StyledButton = styled.button<{ $active: boolean }>`
   border: 1px solid ${(props) => props.theme.colors.blue40};
   border-radius: 30px;
   color: ${(props) => props.theme.colors.blue40};
-  cursor: pointer;
   :hover {
     padding: 11px 31px;
     border: 2px solid ${(props) => props.theme.colors.blue50};
