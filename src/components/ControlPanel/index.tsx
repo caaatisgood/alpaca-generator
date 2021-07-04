@@ -24,6 +24,13 @@ const ControlPanel = ({
       [activeAttribute]: value,
     });
 
+  const _renderStyleText = (value: string) => {
+    if (!value) {
+      return "none";
+    }
+    return value.replace(/-/g, " ");
+  };
+
   return (
     <StyledWrapper>
       <StyledFrame>
@@ -72,7 +79,7 @@ const ControlPanel = ({
                     active={activeSubAttribute === value}
                     onClick={() => _setActiveSubAttribute(value)}
                   >
-                    {value}
+                    {_renderStyleText(value)}
                   </StyledButton>
                 );
               })}
@@ -85,7 +92,7 @@ const ControlPanel = ({
 };
 
 const StyledWrapper = styled.div`
-  max-width: 330px;
+  max-width: 360px;
 `;
 const StyledFrame = styled.div`
   & + & {
@@ -102,6 +109,9 @@ const StyledTitle = styled.h2`
 const StyledButton = styled(Button)`
   margin-right: 8px;
   margin-bottom: 8px;
+  :first-letter {
+    text-transform: uppercase;
+  }
 `;
 const StyledColorButtonsWrapper = styled.div`
   display: inline-flex;
