@@ -1,6 +1,8 @@
 import { MouseEvent, useRef } from "react";
 import styled from "styled-components";
+import mergeImages from "merge-images";
 import { ImageConfig } from "../interfaces";
+import theme from "../constants/theme";
 
 interface Props {
   alpacaConfig: ImageConfig;
@@ -8,12 +10,33 @@ interface Props {
 }
 
 type Images = string[];
+type ColorValueNameMap = {
+  [key: string]: string;
+};
+
+const COLORS_VALUE_NAME_MAP = Object.entries(theme.colors).reduce(
+  (map: ColorValueNameMap, [key, value]) => {
+    map[value] = key;
+    return map;
+  },
+  {}
+);
 
 const Previewer = ({ alpacaConfig, shuffle }: Props) => {
   const imagesRef = useRef<Images>([]);
 
   const _download = () => {
-    console.log("imagesRef.current", imagesRef.current);
+    const backgroundName = COLORS_VALUE_NAME_MAP[alpacaConfig.background];
+    const backgroundPath = `/images/alpaca/bg/${backgroundName}.png`;
+    mergeImages([
+      backgroundPath,
+      ...imagesRef.current.filter((path) => !!path),
+    ]).then((b64) => {
+      var a = document.createElement("a");
+      a.href = b64;
+      a.download = "Alpaca.png";
+      a.click();
+    });
   };
 
   const _renderParts = () => {
