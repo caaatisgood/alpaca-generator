@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useRef } from "react";
 import styled from "styled-components";
 import { ImageConfig } from "../interfaces";
 
@@ -7,54 +7,66 @@ interface Props {
   shuffle: (event: MouseEvent) => void;
 }
 
+type Images = string[];
+
 const Previewer = ({ alpacaConfig, shuffle }: Props) => {
+  const imagesRef = useRef<Images>([]);
+
+  const _download = () => {
+    console.log("imagesRef.current", imagesRef.current);
+  };
+
   const _renderParts = () => {
-    const ears = <Ears src={`/images/alpaca/ears/${alpacaConfig.ears}.png`} />;
-    const neck = <Neck src={`/images/alpaca/neck/${alpacaConfig.neck}.png`} />;
-    const nose = <Nose src="/images/alpaca/nose.png" />;
-    const mouth = (
-      <Mouth src={`/images/alpaca/mouth/${alpacaConfig.mouth}.png`} />
-    );
-    const hair = <Hair src={`/images/alpaca/hair/${alpacaConfig.hair}.png`} />;
-    const accessories = alpacaConfig.accessories && (
-      <Accessories
-        src={`/images/alpaca/accessories/${alpacaConfig.accessories}.png`}
-      />
-    );
-    const eyes = <Eyes src={`/images/alpaca/eyes/${alpacaConfig.eyes}.png`} />;
-    const leg = <Leg src={`/images/alpaca/leg/${alpacaConfig.leg}.png`} />;
+    const earsPath = `/images/alpaca/ears/${alpacaConfig.ears}.png`;
+    const neckPath = `/images/alpaca/neck/${alpacaConfig.neck}.png`;
+    const nose = `/images/alpaca/nose.png`;
+    const mouthPath = `/images/alpaca/mouth/${alpacaConfig.mouth}.png`;
+    const hairPath = `/images/alpaca/hair/${alpacaConfig.hair}.png`;
+    const accessoriesPath =
+      alpacaConfig.accessories &&
+      `/images/alpaca/accessories/${alpacaConfig.accessories}.png`;
+    const eyesPath = `/images/alpaca/eyes/${alpacaConfig.eyes}.png`;
+    const legPath = `/images/alpaca/leg/${alpacaConfig.leg}.png`;
+    let images;
 
     // special case with different order
     if (
       alpacaConfig.accessories === "headphone" &&
       alpacaConfig.hair === "curls"
     ) {
-      return (
-        <>
-          {ears}
-          {neck}
-          {nose}
-          {accessories}
-          {mouth}
-          {hair}
-          {eyes}
-          {leg}
-        </>
-      );
+      images = [
+        earsPath,
+        neckPath,
+        nose,
+        accessoriesPath,
+        mouthPath,
+        hairPath,
+        eyesPath,
+        legPath,
+      ];
+      _setImages(images);
+      return <>{images.map(_renderImage)}</>;
     }
 
-    return (
-      <>
-        {ears}
-        {neck}
-        {nose}
-        {mouth}
-        {hair}
-        {accessories}
-        {eyes}
-        {leg}
-      </>
-    );
+    images = [
+      earsPath,
+      neckPath,
+      nose,
+      mouthPath,
+      hairPath,
+      accessoriesPath,
+      eyesPath,
+      legPath,
+    ];
+    _setImages(images);
+    return <>{images.map(_renderImage)}</>;
+  };
+
+  const _renderImage = (path: string) =>
+    path ? <StyledImg key={path} src={path} /> : null;
+
+  const _setImages = (images: Images) => {
+    imagesRef.current = images;
   };
 
   return (
@@ -68,6 +80,12 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
           <span>
             <StyledButtonIcon>🔀</StyledButtonIcon>
             Random
+          </span>
+        </StyledButton>
+        <StyledButton onClick={_download}>
+          <span>
+            <StyledButtonIcon>🖼</StyledButtonIcon>
+            Download
           </span>
         </StyledButton>
       </div>
@@ -103,14 +121,6 @@ const StyledImg = styled.img`
   width: 100%;
   height: 100%;
 `;
-const Neck = styled(StyledImg)``;
-const Ears = styled(StyledImg)``;
-const Accessories = styled(StyledImg)``;
-const Hair = styled(StyledImg)``;
-const Nose = styled(StyledImg)``;
-const Mouth = styled(StyledImg)``;
-const Eyes = styled(StyledImg)``;
-const Leg = styled(StyledImg)``;
 const StyledLogo = styled.img`
   position: absolute;
   left: 6px;
@@ -119,6 +129,9 @@ const StyledLogo = styled.img`
   height: auto;
 `;
 const StyledButton = styled.button`
+  & + & {
+    margin-left: 20px;
+  }
   min-width: 170px;
   font-size: 1rem;
   line-height: 1.5;
