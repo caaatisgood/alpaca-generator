@@ -6,6 +6,7 @@ const HAIR_MAP = {
   short: "short",
   bang: "bang",
   elegant: "elegant",
+  quiff: "quiff",
 };
 
 const ACCESSORIES_MAP = {

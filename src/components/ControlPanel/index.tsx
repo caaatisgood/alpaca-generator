@@ -34,7 +34,7 @@ const ControlPanel = ({
   return (
     <StyledWrapper>
       <StyledFrame>
-        <StyledTitle>part</StyledTitle>
+        <StyledTitle>Accessorize the Alpaca's:</StyledTitle>
         <div>
           {ATTRIBUTES.map((key) => {
             const { text } = ATTRIBUTE_MAP[key];
@@ -92,7 +92,7 @@ const ControlPanel = ({
 };
 
 const StyledWrapper = styled.div`
-  max-width: 360px;
+  max-width: 362px;
   @media (max-width: 768px) {
     max-width: 100%;
   }
