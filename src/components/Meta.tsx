@@ -10,7 +10,9 @@ const Meta: React.FC = () => {
   const paths = Object.entries(restAttributeMap).reduce(
     (paths: Paths, [key, attribute]) => {
       attribute.values.forEach((value) => {
-        paths.push(`/images/alpaca/${key}/${value}.png`);
+        if (value) {
+          paths.push(`/images/alpaca/${key}/${value}.png`);
+        }
       });
       return paths;
     },
