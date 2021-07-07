@@ -56,7 +56,7 @@ const NECK_MAP = {
   thick: "thick",
 };
 
-const ATTRIBUTE_KEY_MAP = {
+export const ATTRIBUTE_KEY_MAP = {
   background: "background",
   hair: "hair",
   accessories: "accessories",
