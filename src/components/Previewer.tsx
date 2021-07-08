@@ -22,6 +22,8 @@ const COLORS_VALUE_NAME_MAP = Object.entries(theme.colors).reduce(
   {}
 );
 
+const DEV_PROJECTS_LOGO_PATH = `/images/devprojects-logo-vertical.png`;
+
 const Previewer = ({ alpacaConfig, shuffle }: Props) => {
   const imagesRef = useRef<Images>([]);
 
@@ -31,6 +33,7 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
     mergeImages([
       backgroundPath,
       ...imagesRef.current.filter((path) => !!path),
+      { src: DEV_PROJECTS_LOGO_PATH, x: 12, y: 564 },
     ]).then((b64) => {
       var a = document.createElement("a");
       a.href = b64;
