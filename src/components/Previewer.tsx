@@ -27,7 +27,7 @@ const Previewer = ({ alpacaConfig, shuffle }: Props) => {
 
   const _download = () => {
     const backgroundName = COLORS_VALUE_NAME_MAP[alpacaConfig.background];
-    const backgroundPath = `/images/alpaca/bg/${backgroundName}.png`;
+    const backgroundPath = `/images/alpaca/backgrounds/${backgroundName}.png`;
     mergeImages([
       backgroundPath,
       ...imagesRef.current.filter((path) => !!path),
