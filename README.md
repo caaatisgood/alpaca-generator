@@ -1,6 +1,6 @@
 # DevProjects - Alpaca Generator
 
-An example solution of the ["Alpaca Generator" project]() by [DevProjects](http://www.codementor.io/projects)
+An example solution of the ["Alpaca Generator" project](https://www.codementor.io/projects/web/alpaca-image-generator-website-ce2oc0eus8) by [DevProjects](http://www.codementor.io/projects)
 
 ## Technologies used
 - [TypeScript template](https://create-react-app.dev/docs/adding-typescript/) of [Create React App](https://github.com/facebook/create-react-app)
